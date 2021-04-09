@@ -144,11 +144,6 @@ form > input, .passwords > input {
     margin-bottom: 15px;
 }
 
-.hidden {
-
-    display: none;
-}
-
 .user {
 
     color:rgb(0, 221, 147);
@@ -157,4 +152,9 @@ form > input, .passwords > input {
 .admin {
 
     color:rgb(40, 160, 255);
+}
+
+.hidden {
+
+    display: none;
 }
