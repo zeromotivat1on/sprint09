@@ -88,7 +88,7 @@ form > input, .passwords > input {
 
 .button:hover {
 
-    background-color: rgb(0, 200, 145);
+    background-color: rgb(0, 220, 145);
 
     transition: 0.3s;
 
@@ -106,7 +106,7 @@ form > input, .passwords > input {
     margin-top: 10px;
     margin-bottom: 5px;
 
-    border-radius: 5px 5px 0 0;
+    border-radius: 5px;
 }
 
 .clear_button:hover {
@@ -114,9 +114,27 @@ form > input, .passwords > input {
     background-color: rgb(230, 50, 50);
 }
 
-.signin_button {
+.error {
 
-    border-radius:  0 0 5px 5px;
+    color: rgb(240, 16, 16);
+    font-size: 19px;
+
+    text-align: center;
+}
+
+.status {
+
+    margin-bottom: 15px;
+}
+
+.user {
+
+    color:rgb(0, 221, 147);
+}
+
+.admin {
+
+    color:rgb(40, 160, 255);
 }
 
 .remindpswd_button {
