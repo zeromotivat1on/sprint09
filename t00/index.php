@@ -1,3 +1,35 @@
+<?php
+    session_start();
+
+    $_SESSION['table_error'] = '';
+
+    include 'connection/DatabaseConnection.php';
+
+    if(isset($_POST['signup_button'])) {
+
+        save_user($_POST['login'], $_POST['password'], $_POST['full_name'], $_POST['mail']);
+
+    }
+
+    function save_user($login, $password, $full_name, $mail) {
+
+        $conn = new DatabaseConnection('127.0.0.1', NULL, 'root', 'password', 'sword');
+
+        $password = crypt($password, 'salt');
+
+        $sql = "INSERT INTO `users` (`login`, `password`, `full_name`, `mail`) 
+                    VALUES (\"$login\", \"$password\", \"$full_name\", \"$mail\")";
+
+        if(!$conn->connection->query($sql)) {
+
+            $_SESSION['table_error'] = 'The user is already exists';
+
+        }
+        
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,6 +41,7 @@
     <title>Registration</title>
 
     <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
 
 </head>
 
@@ -20,16 +53,19 @@
         <input type="text" name="login" required></input>
 
         <span>Password</span>
-        <input type="password" name="password" required></input>
+        <input id="password" type="password" name="password" required></input>
 
         <span>Confirm Password</span>
-        <input type="password" name="confirm_password" required></input>
+        <input id="conf_password" type="password" name="confirm_password" required onchange="checkPswd()"></input>
 
         <span>Full Name</span>
         <input type="text" name="full_name" required></input>
 
         <span>E-mail</span>
         <input type="email" name="mail" required></input>
+
+        <span id="error"></span>
+        <span id="table_error"><?php echo $_SESSION['table_error']; ?></span>
 
         <div class="buttons">
 
@@ -39,35 +75,6 @@
         </div>
 
     </form>
-
-    <?php
-
-        if(isset($_POST['signup_button'])) {
-
-            $login = $_POST['login'];
-            $password = $_POST['password'];
-            $confirm_password = $_POST['confirm_password'];
-            $full_name = $_POST['full_name'];
-            $mail = $_POST['mail'];
-            echo "$login<br>$password<br>$full_name<br>$mail";
-
-        }
-
-        if(isset($_POST['signup_button'])) {
-        
-            if($password != $confirm_password) {
-
-                echo '<br>Error!<br>';
-
-            }
-        
-        }
-
-    ?>
-
-    <script>
-            var login = '<?php echo $login; ?>'
-    </script>
 
 </body>
 
