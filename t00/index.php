@@ -24,6 +24,9 @@
 
             $_SESSION['table_error'] = 'The user is already exists';
 
+        } else {
+
+            $_SESSION['success_add'] = 'User added successfully';
         }
         
     }
@@ -66,6 +69,7 @@
 
         <span id="error"></span>
         <span id="table_error"><?php echo $_SESSION['table_error']; ?></span>
+        <span id="success_add"><?php echo $_SESSION['success_add']; ?></span>
 
         <div class="buttons">
 

@@ -111,3 +111,9 @@ form > input, .passwords > input {
     color: rgb(240, 16, 16);
     text-align: center;
 }
+
+#success_add {
+
+    color:rgb(0, 221, 147);
+    text-align: center;
+}
